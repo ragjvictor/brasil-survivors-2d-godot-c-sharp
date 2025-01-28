@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://burb4iwbh54g3"]
+
+[ext_resource type="Script" path="res://scripts/ExperienceVial.cs" id="1_0uj68"]
+[ext_resource type="Texture2D" uid="uid://cupfmismchsb3" path="res://assets/utils/coffe.png" id="1_bukhw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8anrq"]
+radius = 19.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pjb2"]
+atlas = ExtResource("1_bukhw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di55j"]
+atlas = ExtResource("1_bukhw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7haoq"]
+atlas = ExtResource("1_bukhw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scpdj"]
+atlas = ExtResource("1_bukhw")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfxi3"]
+atlas = ExtResource("1_bukhw")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vniua"]
+atlas = ExtResource("1_bukhw")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smfow"]
+atlas = ExtResource("1_bukhw")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlthx"]
+atlas = ExtResource("1_bukhw")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qor60"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pjb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di55j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7haoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scpdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfxi3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vniua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smfow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlthx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="ExperienceVial" type="Node2D"]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_0uj68")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_8anrq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qor60")
+animation = &"idle"
+autoplay = "idle"
+frame = 4
+frame_progress = 0.0329958
