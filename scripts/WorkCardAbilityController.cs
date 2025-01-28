@@ -11,6 +11,8 @@ public partial class WorkCardAbilityController : Node
 
     private Timer timer;
 
+    private float damage = 5;
+
     const int MaxRange = 150;
 
     public override void _Ready()
@@ -52,12 +54,14 @@ public partial class WorkCardAbilityController : Node
             return aDistance.CompareTo(bDistance);
         });
 
-        Node2D swordInstance = (Node2D)WorkCardAbility.Instantiate();
-        player.GetParent().AddChild(swordInstance);
-        swordInstance.GlobalPosition = enemies[0].GlobalPosition;
-        swordInstance.GlobalPosition += Vector2.Right.Rotated((float)GD.RandRange(0, Math.Tau)) * 4;
+        WorkCardAbility workCardInstance = (WorkCardAbility)WorkCardAbility.Instantiate();
+        player.GetParent().AddChild(workCardInstance);
+        workCardInstance.HitboxComponent.Damage = damage;
 
-        Vector2 enemyDirection = enemies[0].GlobalPosition - swordInstance.GlobalPosition;
-        swordInstance.Rotation = enemyDirection.Angle();
+        workCardInstance.GlobalPosition = enemies[0].GlobalPosition;
+        workCardInstance.GlobalPosition += Vector2.Right.Rotated((float)GD.RandRange(0, Math.Tau)) * 4;
+
+        Vector2 enemyDirection = enemies[0].GlobalPosition - workCardInstance.GlobalPosition;
+        workCardInstance.Rotation = enemyDirection.Angle();
     }
 }

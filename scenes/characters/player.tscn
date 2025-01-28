@@ -142,7 +142,7 @@ script = ExtResource("1_qcr8y")
 
 [node name="AbilityManager" type="Node" parent="."]
 
-[node name="SwordAbilityController" parent="AbilityManager" instance=ExtResource("2_x3pcx")]
+[node name="WorkCardAbilityController" parent="AbilityManager" instance=ExtResource("2_x3pcx")]
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16

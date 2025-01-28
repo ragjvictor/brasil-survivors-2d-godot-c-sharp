@@ -8,12 +8,13 @@ public partial class BasicEnemyController : CharacterBody2D
 
 	private Area2D area2D;
 
-	private AnimatedSprite2D animationEnemy;
+	public AnimatedSprite2D animationEnemy;
+
+	public HealthComponent healthComponent;
 
 	public override void _Ready()
 	{
-		area2D = GetNode<Area2D>("Area2D");
-		area2D.AreaEntered += OnAreaEntered;
+		healthComponent = GetNode<HealthComponent>("HealthComponent");
 
 		animationEnemy = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		animationEnemy.Stop();
@@ -47,11 +48,5 @@ public partial class BasicEnemyController : CharacterBody2D
 		}
 
 		return Vector2.Zero;
-	}
-
-	private void OnAreaEntered(Area2D area2D)
-	{
-		QueueFree();
-
 	}
 }

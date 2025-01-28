@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/WorkCardAbilityController.cs" id="1_c85es"]
 [ext_resource type="PackedScene" uid="uid://cee6ydu3c0shg" path="res://scenes/utils/work_card_ability.tscn" id="2_jlqto"]
 
-[node name="SwordAbilityController" type="Node"]
+[node name="WorkCardAbilityController" type="Node"]
 script = ExtResource("1_c85es")
 WorkCardAbility = ExtResource("2_jlqto")
 
