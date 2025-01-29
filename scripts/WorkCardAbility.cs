@@ -4,10 +4,10 @@ using System;
 [GlobalClass]
 public partial class WorkCardAbility : Node2D
 {
-	public HitboxComponent HitboxComponent;
+	public HitboxComponent hitboxComponent;
 
 	public override void _Ready()
 	{
-		HitboxComponent = GetNode<HitboxComponent>("HitboxComponent");
+		hitboxComponent = GetNode<HitboxComponent>("HitboxComponent");
 	}
 }

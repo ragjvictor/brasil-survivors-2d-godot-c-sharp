@@ -8,9 +8,9 @@ public partial class BasicEnemyController : CharacterBody2D
 
 	private Area2D area2D;
 
-	public AnimatedSprite2D animationEnemy;
+	private AnimatedSprite2D animationEnemy;
 
-	public HealthComponent healthComponent;
+	private HealthComponent healthComponent;
 
 	public override void _Ready()
 	{

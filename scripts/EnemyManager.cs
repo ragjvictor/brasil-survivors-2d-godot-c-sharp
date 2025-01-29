@@ -4,7 +4,7 @@ using System;
 public partial class EnemyManager : Node
 {
 	[Export]
-	public PackedScene BasicEnemyScene;
+	public PackedScene basicEnemyScene;
 
 	private Timer timer;
 
@@ -27,7 +27,7 @@ public partial class EnemyManager : Node
 		Vector2 randomDirection = Vector2.Right.Rotated((float)GD.RandRange(0, Math.Tau));
 		Vector2 spawnPosition = player.GlobalPosition + (randomDirection * SpawnRadius);
 
-		Node2D enemy = (Node2D)BasicEnemyScene.Instantiate();
+		Node2D enemy = (Node2D)basicEnemyScene.Instantiate();
 		GetParent().AddChild(enemy);
 		enemy.GlobalPosition = spawnPosition;
 

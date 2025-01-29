@@ -7,7 +7,7 @@ using System.Linq;
 public partial class WorkCardAbilityController : Node
 {
     [Export]
-    public PackedScene WorkCardAbility;
+    private PackedScene workCardAbility;
 
     private Timer timer;
 
@@ -54,9 +54,9 @@ public partial class WorkCardAbilityController : Node
             return aDistance.CompareTo(bDistance);
         });
 
-        WorkCardAbility workCardInstance = (WorkCardAbility)WorkCardAbility.Instantiate();
+        WorkCardAbility workCardInstance = (WorkCardAbility)workCardAbility.Instantiate();
         player.GetParent().AddChild(workCardInstance);
-        workCardInstance.HitboxComponent.Damage = damage;
+        workCardInstance.hitboxComponent.Damage = damage;
 
         workCardInstance.GlobalPosition = enemies[0].GlobalPosition;
         workCardInstance.GlobalPosition += Vector2.Right.Rotated((float)GD.RandRange(0, Math.Tau)) * 4;

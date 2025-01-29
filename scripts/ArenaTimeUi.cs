@@ -5,7 +5,7 @@ using System.ComponentModel;
 public partial class ArenaTimeUi : CanvasLayer
 {
 	[Export]
-	public ArenaTimeManager ArenaTimeManager;
+	public ArenaTimeManager arenaTimeManager;
 
 	private Label label;
 
@@ -16,12 +16,12 @@ public partial class ArenaTimeUi : CanvasLayer
 
 	public override void _Process(double delta)
 	{
-		if (ArenaTimeManager == null) 
+		if (arenaTimeManager == null) 
 		{
 			return;
 		}
 
-		float timeElapsed = ArenaTimeManager.GetTimeElapsed();
+		float timeElapsed = arenaTimeManager.GetTimeElapsed();
 		label.Text = GetSecondsToString(timeElapsed);
 	}
 
