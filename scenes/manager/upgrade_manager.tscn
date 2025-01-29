@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwjo2hj5pkk32"]
+
+[ext_resource type="Script" path="res://scripts/manager/UpgradeManager.cs" id="1_g31cp"]
+[ext_resource type="Resource" uid="uid://bwl3uf3tll8su" path="res://resources/upgrade/work_card_rate.tres" id="2_n0gb8"]
+
+[node name="UpgradeManager" type="Node"]
+script = ExtResource("1_g31cp")
+upgradePool = [ExtResource("2_n0gb8")]

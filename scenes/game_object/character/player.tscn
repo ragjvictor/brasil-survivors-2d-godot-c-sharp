@@ -1,0 +1,163 @@
+[gd_scene load_steps=23 format=3 uid="uid://brr5oeqhbfe8a"]
+
+[ext_resource type="Script" path="res://scripts/controller/PlayerController.cs" id="1_qcr8y"]
+[ext_resource type="PackedScene" uid="uid://c2emteff3vied" path="res://scenes/game_object/util/work_card_ability_controller.tscn" id="2_x3pcx"]
+[ext_resource type="Texture2D" uid="uid://b1o6jyptobapa" path="res://assets/character/clt.png" id="3_54bjp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_75gae"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qo7kq"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1m4sm"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di2nv"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkfh3"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0catw"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n8nq"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfegp"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_187m1"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6n5r"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taknc"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jklus"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0qk4"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o76q"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii2ek"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuh0d"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(192, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcbl7"]
+atlas = ExtResource("3_54bjp")
+region = Rect2(224, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_joutl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qo7kq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1m4sm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di2nv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkfh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0catw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n8nq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfegp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_187m1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6n5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_taknc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jklus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0qk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o76q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii2ek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuh0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcbl7")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntqsv"]
+size = Vector2(9, 20)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_qcr8y")
+
+[node name="AbilityManager" type="Node" parent="."]
+
+[node name="WorkCardAbilityController" parent="AbilityManager" instance=ExtResource("2_x3pcx")]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, -13)
+shape = SubResource("CircleShape2D_75gae")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_joutl")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -12)
+shape = SubResource("RectangleShape2D_ntqsv")

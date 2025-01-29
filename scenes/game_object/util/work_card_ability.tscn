@@ -1,0 +1,184 @@
+[gd_scene load_steps=9 format=3 uid="uid://cee6ydu3c0shg"]
+
+[ext_resource type="Script" path="res://scripts/util/WorkCardAbility.cs" id="1_ilm6w"]
+[ext_resource type="Texture2D" uid="uid://drgei5t1omfbn" path="res://assets/util/work_card.png" id="2_jo0uk"]
+[ext_resource type="PackedScene" uid="uid://bp41xor53xfg7" path="res://scenes/component/hitbox_component.tscn" id="3_mwdv7"]
+
+[sub_resource type="Animation" id="Animation_43ak5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_88l5c"]
+resource_name = "swing"
+length = 0.75
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1.68179, 1),
+"update": 0,
+"values": [-0.174533, 0.0, 3.14159, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.35, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 5.65685, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.02, 1.02), Vector2(1, 1), Vector2(1.76, 1.76), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.75),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_kox6f"]
+resource_name = "swing_2"
+length = 0.75
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1.68179, 1),
+"update": 0,
+"values": [-0.174533, 6.28319, 9.42478, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.35, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 5.65685, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(1.4, 1.4), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.75),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fi40b"]
+_data = {
+"RESET": SubResource("Animation_43ak5"),
+"swing": SubResource("Animation_88l5c"),
+"swing_2": SubResource("Animation_kox6f")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_io702"]
+size = Vector2(21, 30)
+
+[node name="WorkCardAbility" type="Node2D"]
+script = ExtResource("1_ilm6w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fi40b")
+}
+autoplay = "swing_2"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jo0uk")
+offset = Vector2(2, 0)
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_mwdv7")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(10.5, 0)
+shape = SubResource("RectangleShape2D_io702")
+disabled = true

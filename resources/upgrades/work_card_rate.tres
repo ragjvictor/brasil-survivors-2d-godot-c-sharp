@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bwl3uf3tll8su"]
-
-[ext_resource type="Script" path="res://scripts/AbilityUpgrade.cs" id="1_ubmtq"]
-
-[resource]
-script = ExtResource("1_ubmtq")
-id = "work_card_rate"
-name = "Velocidade CLT"
-description = "Aumenta a velocidade de ataque da carteira de trabalho em 10%."
