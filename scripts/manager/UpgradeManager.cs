@@ -10,6 +10,9 @@ public partial class UpgradeManager : Node
     [Export]
     public ExperienceManager experienceManager;
 
+    [Export]
+    public PackedScene upgradeScreenScene;
+
     private Dictionary<string, Dictionary<string, Variant>> currentUpgrades = new Dictionary<string, Dictionary<string, Variant>>();
 
     public override void _Ready()
@@ -25,17 +28,24 @@ public partial class UpgradeManager : Node
             return;
         }
 
-        if (!currentUpgrades.ContainsKey(chosenUpgrade.Id))
+        var upgradeScreenInstance = (UpgradeScreen)upgradeScreenScene.Instantiate();
+        AddChild(upgradeScreenInstance);
+        upgradeScreenInstance.SetAbilityUpgrade(new Array<AbilityUpgrade> { chosenUpgrade });
+    }
+
+    private void ApplyUpgrade(AbilityUpgrade upgrade)
+    {
+        if (!currentUpgrades.ContainsKey(upgrade.Id))
         {
-            currentUpgrades[chosenUpgrade.Id] = new Dictionary<string, Variant>
+            currentUpgrades[upgrade.Id] = new Dictionary<string, Variant>
             {
-                { "resource", chosenUpgrade },
+                { "resource", upgrade },
                 { "quantity", 1 }
             };
         }
         else
         {
-            currentUpgrades[chosenUpgrade.Id]["quantity"] = (int)currentUpgrades[chosenUpgrade.Id]["quantity"] + 1;
+            currentUpgrades[upgrade.Id]["quantity"] = (int)currentUpgrades[upgrade.Id]["quantity"] + 1;
         }
     }
 }

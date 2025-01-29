@@ -17,4 +17,14 @@ public partial class AbilityUpgrade : Resource
     {
         get { return id; }
 	}
+
+    public String Name
+    {
+        get { return name; }
+    }
+
+    public String Description
+    {
+        get { return description; }
+    }
 }

@@ -14,7 +14,7 @@ public partial class ExperienceManager : Node
 
     private float currentExperience = 0;
     private float currentLevel = 1;
-    private float targetExperience = 5;
+    private float targetExperience = 1;
     private GameEvents gameEvents;
 
     public override void _Ready()
