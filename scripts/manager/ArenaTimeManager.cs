@@ -1,17 +1,23 @@
 using Godot;
 using System;
 
+// Classe responsável por gerenciar o tempo da arena
 public partial class ArenaTimeManager : Node
-{
-	private Timer timer;
+{    
+    // Timer para controlar o tempo
+    private Timer timer;
 
-	public override void _Ready()
-	{
-		timer = GetNode<Timer>("Timer");
-	}
+    // Método chamado quando o nó está pronto
+    public override void _Ready()
+    {
+        // Obtém o nó Timer da cena
+        timer = GetNode<Timer>("Timer");
+    }
 
-	public float GetTimeElapsed()
-	{		
-		return (float)(timer.WaitTime - timer.TimeLeft);
-	}
+    // Retorna o tempo decorrido
+    public float GetTimeElapsed()
+    {		
+        // Calcula e retorna o tempo decorrido
+        return (float)(timer.WaitTime - timer.TimeLeft);
+    }
 }

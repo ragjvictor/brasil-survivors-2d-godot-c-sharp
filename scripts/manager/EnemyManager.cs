@@ -1,39 +1,40 @@
 using Godot;
 using System;
 
+// Gerenciador de inimigos do jogo
 public partial class EnemyManager : Node
 {
 	[Export]
-	public PackedScene basicEnemyScene;
+	public PackedScene basicEnemyScene; // Cena do inimigo básico a ser instanciada
 
-	private Timer timer;
+	private Timer timer; // Timer para controle de spawn
 
-	const int SpawnRadius = 330;
+	const int SpawnRadius = 330; // Raio de spawn dos inimigos
 
+	// Método chamado quando o nó está pronto
 	public override void _Ready()
 	{
-		timer = GetNode<Timer>("Timer");
-		timer.Timeout += OnTimerTimeout;
+		timer = GetNode<Timer>("Timer"); // Obtém o nó do timer
+		timer.Timeout += OnTimerTimeout; // Associa o evento de timeout ao método OnTimerTimeout
 	}
 
+	// Método chamado quando o timer atinge o tempo limite
 	private void OnTimerTimeout()
 	{
-		Node2D player = (Node2D)GetTree().GetFirstNodeInGroup("player");
+		Node2D player = (Node2D)GetTree().GetFirstNodeInGroup("player"); // Obtém o jogador
 		if (player == null)
 		{
-			return;
+			return; // Se o jogador não existir, sai do método
 		}
 
+		// Gera uma direção aleatória para o spawn
 		Vector2 randomDirection = Vector2.Right.Rotated((float)GD.RandRange(0, Math.Tau));
-		Vector2 spawnPosition = player.GlobalPosition + (randomDirection * SpawnRadius);
+		Vector2 spawnPosition = player.GlobalPosition + (randomDirection * SpawnRadius); // Calcula a posição de spawn
 
-		Node2D enemy = (Node2D)basicEnemyScene.Instantiate();
+		Node2D enemy = (Node2D)basicEnemyScene.Instantiate(); // Instancia o inimigo
 
-		Node2D entitiesLayer = (Node2D)GetTree().GetFirstNodeInGroup("entities_layer");
-		entitiesLayer.AddChild(enemy);
-		enemy.GlobalPosition = spawnPosition;
-
-
+		Node2D entitiesLayer = (Node2D)GetTree().GetFirstNodeInGroup("entities_layer"); // Obtém o grupo de entidades
+		entitiesLayer.AddChild(enemy); // Adiciona o inimigo ao grupo de entidades
+		enemy.GlobalPosition = spawnPosition; // Define a posição do inimigo
 	}
-
 }

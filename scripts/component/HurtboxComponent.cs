@@ -1,26 +1,33 @@
 using Godot;
 using System;
 
+// Componente que interage com hitboxes para aplicar dano ao componente de saúde
 [GlobalClass]
 public partial class HurtboxComponent : Area2D
 {
-	[Export]
-	public HealthComponent healthComponent;
+    // Componente de saúde associado
+    [Export]
+    public HealthComponent healthComponent;
 
-	public override void _Ready()
-	{
-		AreaEntered += OnAreaEntered;
-	}
+    public override void _Ready()
+    {
+        // Conecta o sinal de entrada de área ao método OnAreaEntered
+        AreaEntered += OnAreaEntered;
+    }
 
-	private void OnAreaEntered(Area2D area2D)
-	{
-		if (!(area2D is HitboxComponent))
-			return;
+    // Método chamado quando uma área entra em contato
+    private void OnAreaEntered(Area2D area2D)
+    {
+        // Verifica se a área é uma HitboxComponent
+        if (!(area2D is HitboxComponent))
+            return;
 
-		if (healthComponent == null)
-			return;
+        // Verifica se o componente de saúde está definido
+        if (healthComponent == null)
+            return;
 
-		HitboxComponent hitboxComponent = (HitboxComponent)area2D;
-		healthComponent.Damage(hitboxComponent.Damage);
-	}
+        // Aplica o dano ao componente de saúde
+        HitboxComponent hitboxComponent = (HitboxComponent)area2D;
+        healthComponent.Damage(hitboxComponent.Damage);
+    }
 }

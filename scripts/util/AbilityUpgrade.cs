@@ -1,22 +1,23 @@
 using Godot;
 using System;
 
+// Classe que representa um upgrade de habilidade
 [GlobalClass]
 public partial class AbilityUpgrade : Resource
 {
     [Export]
-    private String id;
+    private String id; // Identificador único da habilidade
 
     [Export]
-    private String name;
+    private String name; // Nome da habilidade
     
     [Export(PropertyHint.MultilineText)]
-    private String description;
+    private String description; // Descrição da habilidade
 
     public String Id
     {
         get { return id; }
-	}
+    }
 
     public String Name
     {
