@@ -15,8 +15,11 @@ public partial class UpgradeManager : Node
 
     private Dictionary<string, Dictionary<string, Variant>> currentUpgrades = new Dictionary<string, Dictionary<string, Variant>>();
 
+    private GameEvents gameEvents;
+
     public override void _Ready()
     {
+        gameEvents = GetNode<GameEvents>("/root/GameEvents"); // Initialize gameEvents
         experienceManager.LevelUp += OnLevelUp;
     }
 
@@ -49,7 +52,7 @@ public partial class UpgradeManager : Node
             currentUpgrades[upgrade.Id]["quantity"] = (int)currentUpgrades[upgrade.Id]["quantity"] + 1;
         }
 
-        GD.Print(currentUpgrades);
+        gameEvents.EmitAbilityUpgradeAdded(upgrade, currentUpgrades);
     }
 
     private void OnUpgradeSelected(AbilityUpgrade upgrade)

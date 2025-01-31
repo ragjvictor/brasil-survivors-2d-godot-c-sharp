@@ -15,11 +15,10 @@ public partial class ExperienceManager : Node
     private float currentExperience = 0;
     private float currentLevel = 1;
     private float targetExperience = 1;
-    private GameEvents gameEvents;
-
+ 
     public override void _Ready()
     {
-        gameEvents = GetNode<GameEvents>("/root/GameEvents");
+        GameEvents gameEvents = GetNode<GameEvents>("/root/GameEvents");
         gameEvents.ExperienceVialCollected += OnExperienceVialCollected;
     }
 

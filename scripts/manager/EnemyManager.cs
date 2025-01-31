@@ -28,7 +28,9 @@ public partial class EnemyManager : Node
 		Vector2 spawnPosition = player.GlobalPosition + (randomDirection * SpawnRadius);
 
 		Node2D enemy = (Node2D)basicEnemyScene.Instantiate();
-		GetParent().AddChild(enemy);
+
+		Node2D entitiesLayer = (Node2D)GetTree().GetFirstNodeInGroup("entities_layer");
+		entitiesLayer.AddChild(enemy);
 		enemy.GlobalPosition = spawnPosition;
 
 
