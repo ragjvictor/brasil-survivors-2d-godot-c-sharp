@@ -14,7 +14,7 @@ public partial class HealthComponent : Node
     private float maxHealth = 10;
     
     // Saúde atual do personagem
-    private float currentHealth;
+    public float currentHealth;
 
     public override void _Ready()
     {

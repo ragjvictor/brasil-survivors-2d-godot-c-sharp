@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://brr5oeqhbfe8a"]
+[gd_scene load_steps=25 format=3 uid="uid://brr5oeqhbfe8a"]
 
 [ext_resource type="Script" path="res://scripts/controller/PlayerController.cs" id="1_qcr8y"]
+[ext_resource type="PackedScene" uid="uid://lwii23sylcg1" path="res://scenes/component/health_component.tscn" id="2_2xl4k"]
 [ext_resource type="PackedScene" uid="uid://c2emteff3vied" path="res://scenes/game_object/util/work_card_ability_controller.tscn" id="2_x3pcx"]
 [ext_resource type="Texture2D" uid="uid://b1o6jyptobapa" path="res://assets/character/clt.png" id="3_54bjp"]
 
@@ -132,23 +133,32 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00gjl"]
+size = Vector2(10, 21)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ntqsv"]
-size = Vector2(9, 20)
+size = Vector2(8, 17)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_qcr8y")
 
+[node name="HealthComponent" parent="." instance=ExtResource("2_2xl4k")]
+
 [node name="AbilityManager" type="Node" parent="."]
 
 [node name="WorkCardAbilityController" parent="AbilityManager" instance=ExtResource("2_x3pcx")]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="DamageIntervalTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="PickupArea2D" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
 position = Vector2(-2, -13)
 shape = SubResource("CircleShape2D_75gae")
 
@@ -158,6 +168,14 @@ sprite_frames = SubResource("SpriteFrames_joutl")
 animation = &"run"
 autoplay = "idle"
 frame_progress = 0.860838
+
+[node name="CollisionArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
+position = Vector2(-2, -12)
+shape = SubResource("RectangleShape2D_00gjl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -12)
