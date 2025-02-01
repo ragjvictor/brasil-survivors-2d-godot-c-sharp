@@ -11,19 +11,15 @@ public partial class BasicEnemyController : CharacterBody2D
     private AnimatedSprite2D animationEnemy; // Sprite animado do inimigo
     private HealthComponent healthComponent; // Componente de saúde do inimigo
 
-    // Método chamado quando o nó está pronto
     public override void _Ready()
     {
-        // Obtém o componente de saúde
         healthComponent = GetNode<HealthComponent>("HealthComponent");
-
-        // Obtém o sprite animado e inicia a animação
         animationEnemy = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+
         animationEnemy.Stop();
         animationEnemy.Play("run");
     }
 
-    // Método chamado a cada frame de física
     public override void _PhysicsProcess(double delta)
     {
         // Obtém a direção para o jogador

@@ -14,10 +14,9 @@ public partial class EnemyManager : Node
 
 	const int SpawnRadius = 330; // Raio de spawn dos inimigos
 
-	// Método chamado quando o nó está pronto
 	public override void _Ready()
 	{
-		timer = GetNode<Timer>("Timer"); // Obtém o nó do timer
+		timer = GetNode<Timer>("Timer");
 
 		experienceManager.LevelUp += OnLevelUpPlayer; // Conecta o evento de level up do jogador
 
@@ -30,7 +29,7 @@ public partial class EnemyManager : Node
 		Node2D player = (Node2D)GetTree().GetFirstNodeInGroup("player"); // Obtém o jogador
 		if (player == null)
 		{
-			return; // Se o jogador não existir, sai do método
+			return;
 		}
 
 		// Gera uma direção aleatória para o spawn

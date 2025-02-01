@@ -10,16 +10,14 @@ public partial class CameraController : Camera2D
     // Posição alvo da câmera
     Godot.Vector2 targetPosition = Godot.Vector2.Zero;
 
-    // Método chamado quando a cena está pronta
     public override void _Ready()
     {
         MakeCurrent(); // Define esta câmera como a câmera atual
     }
 
-    // Método chamado a cada frame
     public override void _Process(double delta)
     {
-        acquireTarget(); // Adquire o alvo (jogador)
+        acquireTarget();
         // Atualiza a posição da câmera suavemente em direção à posição alvo
         GlobalPosition = GlobalPosition.Lerp(targetPosition, (float)(1.0 - Math.Exp(-delta * 20)));
     }

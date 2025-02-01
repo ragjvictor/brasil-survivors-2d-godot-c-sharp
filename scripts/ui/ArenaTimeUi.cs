@@ -12,14 +12,14 @@ public partial class ArenaTimeUi : CanvasLayer
 
 	public override void _Ready()
 	{
-		label = GetNode<Label>("MarginContainer/Label"); // Obtém o nó da label
+		label = GetNode<Label>("MarginContainer/Label");
 	}
 
 	public override void _Process(double delta)
 	{
 		if (arenaTimeManager == null) 
 		{
-			return; // Retorna se o gerenciador de tempo não estiver definido
+			return;
 		}
 
 		float timeElapsed = arenaTimeManager.GetTimeElapsed(); // Obtém o tempo decorrido

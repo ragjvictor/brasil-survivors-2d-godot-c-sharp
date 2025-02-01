@@ -14,10 +14,9 @@ public partial class UpgradeScreen : CanvasLayer
 
     private HBoxContainer cardContainer; // Contêiner para os cartões de upgrade
 
-    // Método chamado quando o nó está pronto
     public override void _Ready()
     {
-        cardContainer = GetNode<HBoxContainer>("MarginContainer/CardContainer"); // Obtém o contêiner de cartões
+        cardContainer = GetNode<HBoxContainer>("%CardContainer"); // Obtém o contêiner de cartões
         GetTree().Paused = true; // Pausa a árvore de nós
     }
 

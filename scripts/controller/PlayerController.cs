@@ -4,28 +4,16 @@ using System;
 // Classe que controla o comportamento do jogador
 public partial class PlayerController : CharacterBody2D
 {
-    // Velocidade máxima do jogador
-    const float MaxSpeed = 125.0f;
-    // Suavização da aceleração
-    const float AccelarationSmoothing = 25;
+    const float MaxSpeed = 125.0f;  // Velocidade máxima do jogador
+    const float AccelarationSmoothing = 25; // Suavização da aceleração
 
-    // variável do numero de corpos em colisão
-    private int numberCollidingBodies = 0;
+    private int numberCollidingBodies = 0;  // variável do numero de corpos em colisão
+    private AnimatedSprite2D animationPlayer;   // Referência ao sprite animado do jogado
+    private Area2D collisionArea2D; // Referência ao area de recebimento de danos do Player
+    private HealthComponent healthComponent;    // Referência ao componente de vida (HP)
+    private Timer damageIntervalTimer;  // Referência ao timer do intervalo de recebimento de dano do Player
+    private ProgressBar healthBar;  // Referência a barra de HP do personagem
 
-    // Referência ao sprite animado do jogador
-    private AnimatedSprite2D animationPlayer;
-
-    // Referência ao area de recebimento de danos do Player
-    private Area2D collisionArea2D;
-
-    // Referência ao componente de vida (HP)
-    private HealthComponent healthComponent;
-    // Referência ao timer do intervalo de recebimento de dano do Player
-    private Timer damageIntervalTimer;
-    // Referência a barra de HP do personagem
-    private ProgressBar healthBar;
-
-    // Método chamado quando o nó está pronto
     public override void _Ready()
     {
         // Obtém o nó do sprite animado
@@ -33,33 +21,21 @@ public partial class PlayerController : CharacterBody2D
         animationPlayer.Stop(); // Para a animação
         animationPlayer.Play("idle"); // Inicia a animação de "idle" 
 
-        // Obtém o nó da barra de progresso do HP
         healthBar = GetNode<ProgressBar>("HealthBar");
-        // Obtém o nó do componente de vida do Player
         healthComponent = GetNode<HealthComponent>("HealthComponent");
-
-        // Obtém o nó da area de colisão 2D
         collisionArea2D = GetNode<Area2D>("CollisionArea2D");
-        // Conecta o evento de entrada de colisão com o método OnBodyEntered
-        collisionArea2D.BodyEntered += OnBodyEntered;
-        // Conecta o evento de saída de colisão com o método OnBodyExited
-        collisionArea2D.BodyExited += OnBodyExited;
-
-        // Obtém o nó do Timer que representa o intervalo de tempo entre os danos recebidos
         damageIntervalTimer = GetNode<Timer>("DamageIntervalTimer");
-        // Conecta o evento do fim do Timer ao método OnDamageIntervalTimerTimeout
-        damageIntervalTimer.Timeout += OnDamageIntervalTimerTimeout;
-        // Conecta o evento de Mudança de HP com o método OnHealthChanged
-        healthComponent.HealthChanged += OnHealthChanged;
 
-        // Chama o método no inicia para iniciar com a vida padrão
-        UpdateHealthDisplay();
+        collisionArea2D.BodyEntered += OnBodyEntered; // Conecta o evento de entrada de colisão com o método OnBodyEntered
+        collisionArea2D.BodyExited += OnBodyExited; // Conecta o evento de saída de colisão com o método OnBodyExited         
+        damageIntervalTimer.Timeout += OnDamageIntervalTimerTimeout; // Conecta o evento do fim do Timer ao método OnDamageIntervalTimerTimeout
+        healthComponent.HealthChanged += OnHealthChanged; // Conecta o evento de Mudança de HP com o método OnHealthChanged
+
+        UpdateHealthDisplay(); // Chama o método no inicia para iniciar com a vida padrão
     }
 
-    // Método chamado a cada frame de física
     public override void _PhysicsProcess(double delta)
     {
-        // Obtém o vetor de movimento
         Vector2 movementVector = GetMovementVector();
         Vector2 direction = movementVector.Normalized(); // Normaliza a direção
         Vector2 targetVelocity = direction * MaxSpeed; // Calcula a velocidade alvo

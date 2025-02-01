@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scripts/ui/UpgradeScreen.cs" id="1_wuq8a"]
 
 [node name="UpgradeScreen" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_wuq8a")
 upgradeCardScene = ExtResource("1_6qe7q")
 

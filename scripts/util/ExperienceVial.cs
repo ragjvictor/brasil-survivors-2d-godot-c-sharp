@@ -9,7 +9,7 @@ public partial class ExperienceVial : Node2D
 
     public override void _Ready()
     {
-        area2D = GetNode<Area2D>("Area2D"); // Obtém o nó da área
+        area2D = GetNode<Area2D>("Area2D");
         area2D.AreaEntered += OnAreaEntered; // Conecta o sinal de entrada na área
         gameEvents = GetNode<GameEvents>("/root/GameEvents"); // Obtém o gerenciador de eventos
     }

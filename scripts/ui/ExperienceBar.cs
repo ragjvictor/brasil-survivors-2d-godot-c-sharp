@@ -12,11 +12,12 @@ public partial class ExperienceBar : CanvasLayer
 	public override void _Ready()
 	{
 		progressBar = GetNode<ProgressBar>("MarginContainer/ProgressBar"); // Obtém o nó da barra de progresso
-		progressBar.Value = 0; // Inicializa o valor da barra de progresso em 0
+		progressBar.Value = 0; // Inicializa o EXP em 0
 		
-		experienceManager.ExperienceUpdated += OnExperienceUpdated; // Assina o evento de atualização de experiência
+		experienceManager.ExperienceUpdated += OnExperienceUpdated;
 	}
-
+	
+	// Método chamado ao ganhar experiência
 	private void OnExperienceUpdated(float currentExperience, float targetExperience)
 	{
 		float percent = currentExperience / targetExperience; // Calcula a porcentagem de experiência atual em relação à experiência alvo

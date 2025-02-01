@@ -15,10 +15,9 @@ public partial class WorkCardAbilityController : Node
 
     private GameEvents gameEvents; // Referência aos eventos do jogo
 
-    // Método chamado quando o nó está pronto
     public override void _Ready()
     {
-        timer = GetNode<Timer>("Timer"); // Obtém o timer
+        timer = GetNode<Timer>("Timer");
         timer.Timeout += OnTimerTimeout; // Conecta ao sinal de timeout
 
         baseWaitTime = timer.WaitTime; // Armazena o tempo base de espera
@@ -33,7 +32,7 @@ public partial class WorkCardAbilityController : Node
         Node2D player = (Node2D)GetTree().GetFirstNodeInGroup("player"); // Obtém o jogador
         if (player == null)
         {
-            return; // Retorna se o jogador não for encontrado
+            return;
         }
 
         var enemyNodes = GetTree().GetNodesInGroup("enemy"); // Obtém todos os inimigos
@@ -61,17 +60,17 @@ public partial class WorkCardAbilityController : Node
             return aDistance.CompareTo(bDistance);
         });
 
-        WorkCardAbility workCardInstance = (WorkCardAbility)workCardAbility.Instantiate(); // Instancia o cartão de trabalho
+        WorkCardAbility workCardInstance = (WorkCardAbility)workCardAbility.Instantiate(); // Instancia a habilidade
 
         Node2D foregroundLayer = (Node2D)GetTree().GetFirstNodeInGroup("foreground_layer"); // Obtém a camada de primeiro plano
-        foregroundLayer.AddChild(workCardInstance); // Adiciona o cartão de trabalho à camada
-        workCardInstance.hitboxComponent.Damage = damage; // Define o dano do cartão de trabalho
+        foregroundLayer.AddChild(workCardInstance); // Adiciona a habilidade à camada
+        workCardInstance.hitboxComponent.Damage = damage; // Define o dano da habilidade
 
-        workCardInstance.GlobalPosition = enemies[0].GlobalPosition; // Define a posição do cartão de trabalho
+        workCardInstance.GlobalPosition = enemies[0].GlobalPosition; // Define a posição da habilidade
         workCardInstance.GlobalPosition += Vector2.Right.Rotated((float)GD.RandRange(0, Math.Tau)) * 4; // Adiciona um pequeno deslocamento aleatório
 
         Vector2 enemyDirection = enemies[0].GlobalPosition - workCardInstance.GlobalPosition; // Calcula a direção do inimigo
-        workCardInstance.Rotation = enemyDirection.Angle(); // Define a rotação do cartão de trabalho
+        workCardInstance.Rotation = enemyDirection.Angle(); // Define a rotação da habilidade
     }
 
     // Método chamado quando uma atualização de habilidade é adicionada

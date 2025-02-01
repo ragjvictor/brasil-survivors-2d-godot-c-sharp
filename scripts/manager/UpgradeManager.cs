@@ -13,12 +13,12 @@ public partial class UpgradeManager : Node
 
     [Export]
     public PackedScene upgradeScreenScene; // Cena da tela de upgrades
-
-    private Dictionary<string, Dictionary<string, Variant>> currentUpgrades = new Dictionary<string, Dictionary<string, Variant>>(); // Dicionário de upgrades atuais
+    
+    // Dicionário de upgrades atuais
+    private Dictionary<string, Dictionary<string, Variant>> currentUpgrades = new Dictionary<string, Dictionary<string, Variant>>();
 
     private GameEvents gameEvents; // Eventos do jogo
 
-    // Método chamado quando o nó está pronto
     public override void _Ready()
     {
         gameEvents = GetNode<GameEvents>("/root/GameEvents"); // Inicializa os eventos do jogo
@@ -28,10 +28,10 @@ public partial class UpgradeManager : Node
     // Método chamado quando o jogador sobe de nível
     private void OnLevelUp(int currentLevel)
     {
-        AbilityUpgrade chosenUpgrade = upgradePool.PickRandom(); // Escolhe um upgrade aleatório
+        AbilityUpgrade chosenUpgrade = upgradePool.PickRandom(); // Escolhe um upgrade aleatório dentro do pool de upgrades
         if (chosenUpgrade == null)
         {
-            return; // Se não houver upgrade, sai do método
+            return;
         }
 
         var upgradeScreenInstance = (UpgradeScreen)upgradeScreenScene.Instantiate(); // Instancia a tela de upgrades
@@ -62,6 +62,6 @@ public partial class UpgradeManager : Node
     // Método chamado quando um upgrade é selecionado
     private void OnUpgradeSelected(AbilityUpgrade upgrade)
     {
-        ApplyUpgrade(upgrade); // Aplica o upgrade selecionado
+        ApplyUpgrade(upgrade);
     }
 }

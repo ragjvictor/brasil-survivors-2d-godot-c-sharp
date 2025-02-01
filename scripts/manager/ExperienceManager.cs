@@ -19,7 +19,6 @@ public partial class ExperienceManager : Node
     private float currentLevel = 1; // Nível atual
     private float targetExperience = 1; // Experiência alvo
  
-    // Método chamado quando o nó está pronto
     public override void _Ready()
     {
         GameEvents gameEvents = GetNode<GameEvents>("/root/GameEvents"); // Obtém o nó de eventos do jogo
@@ -45,6 +44,6 @@ public partial class ExperienceManager : Node
     // Método chamado quando um frasco de experiência é coletado
     private void OnExperienceVialCollected(float value)
     { 
-        IncrementExperience(value); // Incrementa a experiência com o valor coletado
+        IncrementExperience(value);
     }
 }

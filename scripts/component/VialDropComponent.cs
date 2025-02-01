@@ -13,7 +13,6 @@ public partial class VialDropComponent : Node
     [Export(PropertyHint.Range, "0, 1")]
     public float dropPercent = 0.5f; // Percentual de chance de queda do frasco
 
-    // Método chamado quando o nó está pronto
     public override void _Ready()
     {
         healthComponent.Died += OnDied; // Associa o evento de morte ao método OnDied
