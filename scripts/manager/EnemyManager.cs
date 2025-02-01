@@ -7,6 +7,9 @@ public partial class EnemyManager : Node
 	[Export]
 	public PackedScene basicEnemyScene; // Cena do inimigo básico a ser instanciada
 
+	[Export]
+	public ExperienceManager experienceManager; // Gerenciador de experiência do jogo
+
 	private Timer timer; // Timer para controle de spawn
 
 	const int SpawnRadius = 330; // Raio de spawn dos inimigos
@@ -15,6 +18,9 @@ public partial class EnemyManager : Node
 	public override void _Ready()
 	{
 		timer = GetNode<Timer>("Timer"); // Obtém o nó do timer
+
+		experienceManager.LevelUp += OnLevelUpPlayer; // Conecta o evento de level up do jogador
+
 		timer.Timeout += OnTimerTimeout; // Associa o evento de timeout ao método OnTimerTimeout
 	}
 
@@ -36,5 +42,16 @@ public partial class EnemyManager : Node
 		Node2D entitiesLayer = (Node2D)GetTree().GetFirstNodeInGroup("entities_layer"); // Obtém o grupo de entidades
 		entitiesLayer.AddChild(enemy); // Adiciona o inimigo ao grupo de entidades
 		enemy.GlobalPosition = spawnPosition; // Define a posição do inimigo
+	}
+
+	// Método chamado quando o jogador sobe de level
+	private void OnLevelUpPlayer(int currentLevel)
+	{
+		if (timer.WaitTime <= 0.5)
+		{
+			return;
+		}
+		// Reduz o tempo de spawn dos inimigos em 0,1 segundos a cada aumento de level do player
+		timer.WaitTime -= 0.1;
 	}
 }
