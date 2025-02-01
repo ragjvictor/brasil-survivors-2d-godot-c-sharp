@@ -9,6 +9,10 @@ public partial class HealthComponent : Node
     [Signal]
     public delegate void DiedEventHandler();
 
+    // Sinal emitido quando a saúde muda
+    [Signal]
+    public delegate void HealthChangedEventHandler(); 
+
     // Saúde máxima do personagem
     [Export]
     private float maxHealth = 10;
@@ -22,11 +26,32 @@ public partial class HealthComponent : Node
         currentHealth = maxHealth;
     }
 
-    // Método para aplicar dano ao personagem
+    // Método para aplicar dano a um personagem
     public void Damage(float damageAmount)
     {
         // Reduz a saúde atual, garantindo que não fique abaixo de zero
         currentHealth = Math.Max(currentHealth - damageAmount, 0);
+
+        EmitSignal(SignalName.HealthChanged);
+        // Agenda a chamada do método CheckDeath de forma diferida
+        CallDeferred(nameof(CheckDeath));
+
+    }
+
+    // Método para retornar o HP do personagem
+    public float GetHelthPercent()
+    {
+        if (maxHealth <= 0)
+        {
+            return 0;
+        }
+
+        return Math.Min(currentHealth/maxHealth, 1);
+    }
+
+    // Método para verificar se um personagem morreu
+    public void CheckDeath()
+    {
         if (currentHealth == 0)
         {
             // Emite o sinal de morte e remove o personagem

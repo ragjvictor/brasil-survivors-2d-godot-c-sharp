@@ -22,6 +22,8 @@ public partial class PlayerController : CharacterBody2D
     private HealthComponent healthComponent;
     // Referência ao timer do intervalo de recebimento de dano do Player
     private Timer damageIntervalTimer;
+    // Referência a barra de HP do personagem
+    private ProgressBar healthBar;
 
     // Método chamado quando o nó está pronto
     public override void _Ready()
@@ -31,12 +33,10 @@ public partial class PlayerController : CharacterBody2D
         animationPlayer.Stop(); // Para a animação
         animationPlayer.Play("idle"); // Inicia a animação de "idle" 
 
+        // Obtém o nó da barra de progresso do HP
+        healthBar = GetNode<ProgressBar>("HealthBar");
         // Obtém o nó do componente de vida do Player
         healthComponent = GetNode<HealthComponent>("HealthComponent");
-        // Obtém o nó do Timer que representa o intervalo de tempo entre os danos recebidos
-        damageIntervalTimer = GetNode<Timer>("DamageIntervalTimer");
-        // Conecta o evento do fim do Timer ao método OnDamageIntervalTimerTimeout
-        damageIntervalTimer.Timeout += OnDamageIntervalTimerTimeout;
 
         // Obtém o nó da area de colisão 2D
         collisionArea2D = GetNode<Area2D>("CollisionArea2D");
@@ -44,15 +44,25 @@ public partial class PlayerController : CharacterBody2D
         collisionArea2D.BodyEntered += OnBodyEntered;
         // Conecta o evento de saída de colisão com o método OnBodyExited
         collisionArea2D.BodyExited += OnBodyExited;
+
+        // Obtém o nó do Timer que representa o intervalo de tempo entre os danos recebidos
+        damageIntervalTimer = GetNode<Timer>("DamageIntervalTimer");
+        // Conecta o evento do fim do Timer ao método OnDamageIntervalTimerTimeout
+        damageIntervalTimer.Timeout += OnDamageIntervalTimerTimeout;
+        // Conecta o evento de Mudança de HP com o método OnHealthChanged
+        healthComponent.HealthChanged += OnHealthChanged;
+
+        // Chama o método no inicia para iniciar com a vida padrão
+        UpdateHealthDisplay();
     }
 
     // Método chamado a cada frame de física
     public override void _PhysicsProcess(double delta)
     {
         // Obtém o vetor de movimento
-        Godot.Vector2 movementVector = GetMovementVector();
-        Godot.Vector2 direction = movementVector.Normalized(); // Normaliza a direção
-        Godot.Vector2 targetVelocity = direction * MaxSpeed; // Calcula a velocidade alvo
+        Vector2 movementVector = GetMovementVector();
+        Vector2 direction = movementVector.Normalized(); // Normaliza a direção
+        Vector2 targetVelocity = direction * MaxSpeed; // Calcula a velocidade alvo
 
         // Suaviza a transição da velocidade atual para a velocidade alvo
         Velocity = Velocity.Lerp(targetVelocity, (float)(1 - Math.Exp(-delta * AccelarationSmoothing)));
@@ -61,7 +71,7 @@ public partial class PlayerController : CharacterBody2D
     }
 
     // Método que obtém o vetor de movimento baseado na entrada do jogador
-    private Godot.Vector2 GetMovementVector()
+    private Vector2 GetMovementVector()
     {
         // Obtém a entrada do jogador para o movimento
         float movementX = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
@@ -85,7 +95,7 @@ public partial class PlayerController : CharacterBody2D
             animationPlayer.Play("idle"); // Toca a animação de "idle"
         }
 
-        return new Godot.Vector2(movementX, movementY); // Retorna o vetor de movimento
+        return new Vector2(movementX, movementY); // Retorna o vetor de movimento
     }
 
     // Método de checagem e aplicação do Dano que o Player recebeu
@@ -98,8 +108,12 @@ public partial class PlayerController : CharacterBody2D
        
         healthComponent.Damage(1);
         damageIntervalTimer.Start();
-        GD.Print(healthComponent.currentHealth);
+    }
 
+    // Método que atualiza a barra da vida
+    private void UpdateHealthDisplay()
+    {
+        healthBar.Value = healthComponent.GetHelthPercent();
     }
 
     // Método chamado quando um corpo entra na área de colisão
@@ -119,5 +133,11 @@ public partial class PlayerController : CharacterBody2D
     private void OnDamageIntervalTimerTimeout()
     {
         CheckDealDamage();
+    }
+
+    // Método chamado quando o HP altera
+    private void OnHealthChanged()
+    {
+        UpdateHealthDisplay();
     }
 }
