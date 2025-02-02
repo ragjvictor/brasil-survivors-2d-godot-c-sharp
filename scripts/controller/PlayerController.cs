@@ -10,7 +10,7 @@ public partial class PlayerController : CharacterBody2D
     private int numberCollidingBodies = 0;  // variável do numero de corpos em colisão
     private AnimatedSprite2D animationPlayer;   // Referência ao sprite animado do jogado
     private Area2D collisionArea2D; // Referência ao area de recebimento de danos do Player
-    private HealthComponent healthComponent;    // Referência ao componente de vida (HP)
+    public HealthComponent healthComponent;    // Referência ao componente de vida (HP)
     private Timer damageIntervalTimer;  // Referência ao timer do intervalo de recebimento de dano do Player
     private ProgressBar healthBar;  // Referência a barra de HP do personagem
 

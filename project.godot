@@ -68,6 +68,12 @@ left_click={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://resources/lang/TranslationData.en.translation", "res://resources/lang/TranslationData.es.translation", "res://resources/lang/TranslationData.pt.translation")
+locale/fallback="pt"
+locale/locale_filter_mode=0
+
 [layer_names]
 
 2d_physics/layer_1="Terrain"

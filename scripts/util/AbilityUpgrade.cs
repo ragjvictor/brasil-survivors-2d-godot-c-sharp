@@ -8,11 +8,10 @@ public partial class AbilityUpgrade : Resource
     [Export]
     private String id; // Identificador único da habilidade
 
-    [Export]
-    private String name; // Nome da habilidade
-    
-    [Export(PropertyHint.MultilineText)]
-    private String description; // Descrição da habilidade
+    private string GetTextAbility(string field)
+    {
+        return $"UP_{id.ToUpper()}_{field.ToUpper()}";
+    }
 
     public String Id
     {
@@ -21,11 +20,11 @@ public partial class AbilityUpgrade : Resource
 
     public String Name
     {
-        get { return name; }
+        get { return GetTextAbility("name"); }
     }
 
     public String Description
     {
-        get { return description; }
+        get { return GetTextAbility("desc"); }
     }
 }

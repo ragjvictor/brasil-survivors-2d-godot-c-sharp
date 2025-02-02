@@ -5,7 +5,7 @@ using System;
 public partial class ArenaTimeManager : Node
 {    
     [Export]
-    public PackedScene victoryScreenScene; // Exporta a Cena de vitória
+    public PackedScene endScreenScene; // Exporta a Cena de finalização
 
     // Timer para controlar o tempo
     private Timer timer;
@@ -27,7 +27,7 @@ public partial class ArenaTimeManager : Node
     // Método usado quando o limite do Timer é atingido
     private void OnTimerTimeout()
     {
-        var victoryScreenInstance = victoryScreenScene.Instantiate(); // Instancia a Cena de vitória
-        AddChild(victoryScreenInstance);
+        var endScreenInstance = endScreenScene.Instantiate(); // Instancia a Cena de finalização
+        AddChild(endScreenInstance);
     }
 }

@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_v1308")
 id = "work_card_rate"
-name = "Velocidade CLT"
-description = "Aumenta a velocidade de ataque da carteira de trabalho em 10%."
+name = ""
+description = ""

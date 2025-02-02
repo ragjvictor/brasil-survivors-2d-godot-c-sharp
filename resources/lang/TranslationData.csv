@@ -1,0 +1,9 @@
+keys,pt,en,es
+UP_WORK_CARD_RATE_NAME,Velocidade CLT,Work Card Speed,Velocidad CLT
+UP_WORK_CARD_RATE_DESC,Aumenta a velocidade de ataque da carteira de trabalho em 10%.,Increases the attack speed of the work card by 10%.,Aumenta la velocidad de ataque de la tarjeta de trabajo en un 10%.
+VICTORY_NAME,Sucesso,Success,Éxito
+VICTORY_DESC,"Parabéns, você escapou de todas as urgências!","Congratulations, you escaped all the urgencies.","Felicidades, escapaste de todas las urgencias."
+DEFEAT_NAME,Fracassou,Defeat,Derrota
+DEFEAT_DESC,Você não conseguiu fugir das demandas.Fará hora extra na sexta-feira...,You failed to escape the demands. You'll be doing overtime on Friday...,No lograste escapar de las demandas. Harás horas extra el viernes...
+BTN_RESTART,Jogar novamente,Play Again,Jugar de nuevo
+BTN_QUIT,Sair,Quit,Salir
