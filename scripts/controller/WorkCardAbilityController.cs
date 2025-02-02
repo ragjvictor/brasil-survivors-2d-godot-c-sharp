@@ -26,6 +26,16 @@ public partial class WorkCardAbilityController : Node
         gameEvents.AbilityUpgradeAdded += OnAbilityUpgradeAdded; // Conecta ao sinal de atualização de habilidade
     }
 
+    public override void _ExitTree()
+    {
+        // Verifica se o nó GameEvents ainda existe para evitar possíveis erros
+        GameEvents gameEvents = GetNodeOrNull<GameEvents>("/root/GameEvents");
+        if (gameEvents != null)
+        {
+            gameEvents.AbilityUpgradeAdded -= OnAbilityUpgradeAdded;
+        }
+    }
+
     // Método chamado quando o timer atinge o tempo limite
     private void OnTimerTimeout()
     {

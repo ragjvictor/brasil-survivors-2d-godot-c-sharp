@@ -25,6 +25,16 @@ public partial class ExperienceManager : Node
         gameEvents.ExperienceVialCollected += OnExperienceVialCollected; // Associa o evento de coleta de frasco de experiência
     }
 
+    public override void _ExitTree()
+    {
+        // Verifica se o nó GameEvents ainda existe para evitar possíveis erros
+        GameEvents gameEvents = GetNodeOrNull<GameEvents>("/root/GameEvents");
+        if (gameEvents != null)
+        {
+            gameEvents.ExperienceVialCollected -= OnExperienceVialCollected;
+        }
+    }
+
     // Método para incrementar a experiência
     private void IncrementExperience(float value)
     {
