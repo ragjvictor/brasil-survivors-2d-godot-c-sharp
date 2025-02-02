@@ -5,5 +5,3 @@
 [resource]
 script = ExtResource("1_v1308")
 id = "work_card_rate"
-name = ""
-description = ""
