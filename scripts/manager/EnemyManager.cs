@@ -8,7 +8,9 @@ public partial class EnemyManager : Node
 	public PackedScene basicEnemyScene; // Cena do inimigo básico a ser instanciada
 
 	[Export]
-	public ExperienceManager experienceManager; // Gerenciador de experiência do jogo
+	public ArenaTimeManager arenaTimeManager; // Cena do gerenciador de tempo do jogo
+
+	private Double baseSpawnTime = 0;
 
 	private Timer timer; // Timer para controle de spawn
 
@@ -17,15 +19,16 @@ public partial class EnemyManager : Node
 	public override void _Ready()
 	{
 		timer = GetNode<Timer>("Timer");
-
-		experienceManager.LevelUp += OnLevelUpPlayer; // Conecta o evento de level up do jogador
-
+		baseSpawnTime = timer.WaitTime;
+		arenaTimeManager.ArenaDificultyIncreased += OnArenaDificultyIncreased;
 		timer.Timeout += OnTimerTimeout; // Associa o evento de timeout ao método OnTimerTimeout
 	}
 
 	// Método chamado quando o timer atinge o tempo limite
 	private void OnTimerTimeout()
 	{
+		timer.Start();
+
 		Node2D player = (Node2D)GetTree().GetFirstNodeInGroup("player"); // Obtém o jogador
 		if (player == null)
 		{
@@ -43,14 +46,11 @@ public partial class EnemyManager : Node
 		enemy.GlobalPosition = spawnPosition; // Define a posição do inimigo
 	}
 
-	// Método chamado quando o jogador sobe de level
-	private void OnLevelUpPlayer(int currentLevel)
+	private void OnArenaDificultyIncreased(int arenaDificulty)
 	{
-		if (timer.WaitTime <= 0.5)
-		{
-			return;
-		}
-		// Reduz o tempo de spawn dos inimigos em 0,1 segundos a cada aumento de level do player
-		timer.WaitTime -= 0.1;
+		float timeOff = (0.1f/12) * arenaDificulty;
+		timeOff = Math.Min(timeOff, 0.7f);
+		GD.Print(timeOff);
+		timer.WaitTime = baseSpawnTime - timeOff;
 	}
 }
