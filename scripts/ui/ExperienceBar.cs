@@ -13,10 +13,10 @@ public partial class ExperienceBar : CanvasLayer
 	{
 		progressBar = GetNode<ProgressBar>("MarginContainer/ProgressBar"); // Obtém o nó da barra de progresso
 		progressBar.Value = 0; // Inicializa o EXP em 0
-		
+
 		experienceManager.ExperienceUpdated += OnExperienceUpdated;
 	}
-	
+
 	// Método chamado ao ganhar experiência
 	private void OnExperienceUpdated(float currentExperience, float targetExperience)
 	{

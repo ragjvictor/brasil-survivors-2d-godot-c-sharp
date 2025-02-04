@@ -42,7 +42,7 @@ public partial class PlayerController : CharacterBody2D
 
         // Suaviza a transição da velocidade atual para a velocidade alvo
         Velocity = Velocity.Lerp(targetVelocity, (float)(1 - Math.Exp(-delta * AccelarationSmoothing)));
-        
+
         MoveAndSlide(); // Move o jogador
     }
 
@@ -52,19 +52,20 @@ public partial class PlayerController : CharacterBody2D
         // Obtém a entrada do jogador para o movimento
         float movementX = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
         float movementY = Input.GetActionStrength("move_down") - Input.GetActionStrength("move_up");
-        
+
         // Verifica se há movimento
         if (movementX != 0.0 || movementY != 0.0)
         {
             animationPlayer.Play("run"); // Toca a animação de corrida
             // Verifica a direção do movimento para flipar o sprite
-            if (movementX > 0) {
+            if (movementX > 0)
+            {
                 animationPlayer.FlipH = false; // Direita
             }
             else
             {
                 animationPlayer.FlipH = true; // Esquerda
-            }            
+            }
         }
         else
         {
@@ -81,7 +82,7 @@ public partial class PlayerController : CharacterBody2D
         {
             return;
         }
-       
+
         healthComponent.Damage(1);
         damageIntervalTimer.Start();
     }

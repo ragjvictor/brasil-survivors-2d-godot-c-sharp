@@ -17,7 +17,7 @@ public partial class ArenaTimeUi : CanvasLayer
 
 	public override void _Process(double delta)
 	{
-		if (arenaTimeManager == null) 
+		if (arenaTimeManager == null)
 		{
 			return;
 		}

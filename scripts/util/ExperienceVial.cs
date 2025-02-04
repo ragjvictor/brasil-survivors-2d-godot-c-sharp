@@ -15,7 +15,7 @@ public partial class ExperienceVial : Node2D
     }
 
     private void OnAreaEntered(Area2D area2D)
-    {   
+    {
         gameEvents.EmitExperienceVialCollected(1); // Emite evento de coleta de frasco
         QueueFree(); // Remove o frasco da cena
     }

@@ -8,7 +8,7 @@ public partial class UpgradeScreen : CanvasLayer
     // Sinal emitido quando um upgrade é selecionado
     [Signal]
     public delegate void UpgradeSelectedEventHandler(AbilityUpgrade upgrade);
-    
+
     [Export]
     public PackedScene upgradeCardScene; // Cena do cartão de upgrade
 

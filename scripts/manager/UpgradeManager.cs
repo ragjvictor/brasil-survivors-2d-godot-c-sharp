@@ -13,7 +13,7 @@ public partial class UpgradeManager : Node
 
     [Export]
     public PackedScene upgradeScreenScene; // Cena da tela de upgrades
-    
+
     // Dicionário de upgrades atuais
     private Dictionary<string, Dictionary<string, Variant>> currentUpgrades = new Dictionary<string, Dictionary<string, Variant>>();
 

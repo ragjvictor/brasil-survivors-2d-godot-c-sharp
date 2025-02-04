@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 
 // Gerenciador de inimigos do jogo
-public partial class EnemyManager : Node 
+public partial class EnemyManager : Node
 {
 
 	[Export]
@@ -19,7 +19,7 @@ public partial class EnemyManager : Node
 
 	const int SpawnRadius = 330; // Raio de spawn dos inimigos
 
-	public override void _Ready() 
+	public override void _Ready()
 	{
 		timer = GetNode<Timer>("Timer");
 		baseSpawnTime = timer.WaitTime;
@@ -27,10 +27,10 @@ public partial class EnemyManager : Node
 		timer.Timeout += OnTimerTimeout; // Associa o evento de timeout ao método OnTimerTimeout
 	}
 
-	private Vector2 GetSpawnPosition() 
+	private Vector2 GetSpawnPosition()
 	{
 		Node2D player = (Node2D)GetTree().GetFirstNodeInGroup("player"); // Obtém o jogador
-		if (player == null) 
+		if (player == null)
 		{
 			return Vector2.Zero;
 		}
@@ -40,7 +40,7 @@ public partial class EnemyManager : Node
 
 
 		// Loop para buscar uma área de spawn válida para os inimigos
-		foreach (int i in Enumerable.Range(0,4))
+		foreach (int i in Enumerable.Range(0, 4))
 		{
 			// Gera uma direção aleatória para o spawn
 			spawnPosition = player.GlobalPosition + (randomDirection * SpawnRadius); // Calcula a posição de spawn
@@ -60,20 +60,20 @@ public partial class EnemyManager : Node
 		}
 
 		return spawnPosition;
-		
+
 	}
 
 	// Método chamado quando o timer atinge o tempo limite
-	private void OnTimerTimeout() 
+	private void OnTimerTimeout()
 	{
 		timer.Start();
 
 		Node2D player = (Node2D)GetTree().GetFirstNodeInGroup("player"); // Obtém o jogador
-		if (player == null) 
+		if (player == null)
 		{
 			return;
 		}
-		
+
 
 		Node2D enemy = (Node2D)basicEnemyScene.Instantiate(); // Instancia o inimigo
 
@@ -82,11 +82,10 @@ public partial class EnemyManager : Node
 		enemy.GlobalPosition = GetSpawnPosition(); // Define a posição do inimigo
 	}
 
-	private void OnArenaDificultyIncreased(int arenaDificulty) 
+	private void OnArenaDificultyIncreased(int arenaDificulty)
 	{
-		float timeOff = (0.1f/12) * arenaDificulty;
+		float timeOff = (0.1f / 12) * arenaDificulty;
 		timeOff = Math.Min(timeOff, 0.7f);
-		GD.Print(timeOff);
 		timer.WaitTime = baseSpawnTime - timeOff;
 	}
 }

@@ -63,7 +63,7 @@ public partial class WorkCardAbilityController : Node
         }
 
         // Classifica qual inimigo será atacado baseado na distância mais próxima
-        enemies.Sort((a, b) => 
+        enemies.Sort((a, b) =>
         {
             float aDistance = a.GlobalPosition.DistanceSquaredTo(player.GlobalPosition);
             float bDistance = b.GlobalPosition.DistanceSquaredTo(player.GlobalPosition);

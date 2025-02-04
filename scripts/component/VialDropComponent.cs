@@ -20,13 +20,13 @@ public partial class VialDropComponent : Node
 
     // Método chamado quando a saúde do componente chega a zero
     private void OnDied()
-    {       
+    {
         // Verifica se a queda deve ocorrer com base na probabilidade
-        if (GD.Randf() > dropPercent) 
+        if (GD.Randf() > dropPercent)
             return;
 
         // Verifica se a cena do frasco está definida
-        if (vialScene == null) 
+        if (vialScene == null)
             return;
 
         // Verifica se o proprietário é um Node2D

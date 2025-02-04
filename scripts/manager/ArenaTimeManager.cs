@@ -31,7 +31,7 @@ public partial class ArenaTimeManager : Node
     }
 
     public override void _Process(double delta)
-    {   
+    {
         EmitIncreasedArenaDificulty();
     }
 
@@ -48,7 +48,7 @@ public partial class ArenaTimeManager : Node
 
     // Retorna o tempo decorrido
     public float GetTimeElapsed()
-    {		
+    {
         // Calcula e retorna o tempo decorrido
         return (float)(timer.WaitTime - timer.TimeLeft);
     }

@@ -13,7 +13,7 @@ public partial class GameEvents : Node
     // Sinal emitido quando um upgrade de habilidade é adicionado
     [Signal]
     public delegate void AbilityUpgradeAddedEventHandler(
-        AbilityUpgrade upgrade, 
+        AbilityUpgrade upgrade,
         Dictionary<string, Dictionary<string, Variant>> currentUpgrades
     );
 

@@ -11,12 +11,12 @@ public partial class HealthComponent : Node
 
     // Sinal emitido quando a saúde muda
     [Signal]
-    public delegate void HealthChangedEventHandler(); 
+    public delegate void HealthChangedEventHandler();
 
     // Saúde máxima do personagem
     [Export]
     private float maxHealth = 10;
-    
+
     // Saúde atual do personagem
     public float currentHealth;
 
@@ -46,7 +46,7 @@ public partial class HealthComponent : Node
             return 0;
         }
 
-        return Math.Min(currentHealth/maxHealth, 1);
+        return Math.Min(currentHealth / maxHealth, 1);
     }
 
     // Método para verificar se um personagem morreu

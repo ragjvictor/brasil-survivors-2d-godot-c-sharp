@@ -13,7 +13,7 @@ public partial class AbilityUpgradeCard : PanelContainer
     private AbilityUpgrade currentUpgrade; // Upgrade atual associado ao cartão
 
     public override void _Ready()
-    {        
+    {
         nameLabel = GetNode<Label>("%NameLabel");
         descriptionLabel = GetNode<Label>("%DescriptionLabel");
         this.Connect("gui_input", new Callable(this, nameof(OnGuiEvent))); // Conecta o evento de entrada do GUI
@@ -29,7 +29,7 @@ public partial class AbilityUpgradeCard : PanelContainer
 
     // Método chamado quando há um evento de entrada no GUI
     private void OnGuiEvent(InputEvent e)
-    {   
+    {
         if (e.IsActionPressed("left_click")) // Verifica se o botão esquerdo do mouse foi pressionado
         {
             EmitSignal(SignalName.Selected, currentUpgrade); // Emite sinal de seleção com o upgrade atual
