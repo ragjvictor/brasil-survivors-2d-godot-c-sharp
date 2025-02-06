@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://brr5oeqhbfe8a"]
+[gd_scene load_steps=28 format=3 uid="uid://brr5oeqhbfe8a"]
 
 [ext_resource type="Script" path="res://scripts/controller/PlayerController.cs" id="1_qcr8y"]
 [ext_resource type="PackedScene" uid="uid://lwii23sylcg1" path="res://scenes/component/health_component.tscn" id="2_2xl4k"]
 [ext_resource type="PackedScene" uid="uid://c2emteff3vied" path="res://scenes/game_object/util/work_card_ability_controller.tscn" id="2_x3pcx"]
 [ext_resource type="Texture2D" uid="uid://b1o6jyptobapa" path="res://assets/character/clt.png" id="3_54bjp"]
+[ext_resource type="PackedScene" uid="uid://brxfgs8qp145f" path="res://scenes/game_object/util/axe_ability_controller.tscn" id="4_jtc6u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eix1e"]
 bg_color = Color(0.247059, 0.14902, 0.192157, 1)
@@ -168,6 +169,8 @@ script = ExtResource("1_qcr8y")
 [node name="AbilityManager" type="Node" parent="."]
 
 [node name="WorkCardAbilityController" parent="AbilityManager" instance=ExtResource("2_x3pcx")]
+
+[node name="AxeAbilityController" parent="AbilityManager" instance=ExtResource("4_jtc6u")]
 
 [node name="DamageIntervalTimer" type="Timer" parent="."]
 wait_time = 0.5
