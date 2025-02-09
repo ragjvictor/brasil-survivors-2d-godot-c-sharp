@@ -8,6 +8,9 @@ public partial class AbilityUpgrade : Resource
     [Export]
     private String id; // Identificador único da habilidade
 
+    [Export]
+    private int maxQuantity;
+
     private string GetTextAbility(string field)
     {       
         return $"UP_{id.ToUpper()}_{field.ToUpper()}";
@@ -16,6 +19,11 @@ public partial class AbilityUpgrade : Resource
     public String Id
     {
         get { return id; }
+    }
+
+    public int MaxQuantity
+    {
+        get { return maxQuantity; }
     }
 
     public String Name

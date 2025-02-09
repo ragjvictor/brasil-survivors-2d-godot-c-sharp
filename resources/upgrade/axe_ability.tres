@@ -7,4 +7,4 @@
 script = ExtResource("2_75ui3")
 abilityControllerScene = ExtResource("1_4ntif")
 id = "axe_ability"
-Type = 0
+maxQuantity = 1

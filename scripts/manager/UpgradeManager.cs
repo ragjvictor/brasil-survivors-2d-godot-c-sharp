@@ -42,8 +42,21 @@ public partial class UpgradeManager : Node
             currentUpgrades[upgrade.Id]["quantity"] = (int)currentUpgrades[upgrade.Id]["quantity"] + 1;
         }
 
+        if (upgrade.MaxQuantity > 0)
+        {
+            int currentQuantity = (int)currentUpgrades[upgrade.Id]["quantity"];
+            if (currentQuantity == upgrade.MaxQuantity)
+            {
+                // Remove do pool todos os upgrades que possuam o mesmo ID do upgrade selecionado
+                upgradePool = new Array<AbilityUpgrade>(
+                    upgradePool.Where(pool_upgrade => pool_upgrade.Id != upgrade.Id).ToArray()
+                );
+            }
+        }
+
         gameEvents.EmitAbilityUpgradeAdded(upgrade, currentUpgrades);
     }
+
 
     private Array<AbilityUpgrade> PickUpgrades()
     {
@@ -63,18 +76,17 @@ public partial class UpgradeManager : Node
 
             // Escolhe um upgrade aleatório
             AbilityUpgrade chosenUpgrade = filteredUpgrades.PickRandom();
+            if (chosenUpgrade == null)
+            {
+                break;
+            }
+
             chosenUpgrades.Add(chosenUpgrade);
 
             // Filtra os upgrades removendo aqueles com o mesmo id do upgrade escolhido
-            Array<AbilityUpgrade> newFilteredUpgrades = new Array<AbilityUpgrade>();
-            foreach (AbilityUpgrade upgrade in filteredUpgrades)
-            {
-                if (!upgrade.Id.Equals(chosenUpgrade.Id))
-                {
-                    newFilteredUpgrades.Add(upgrade);
-                }
-            }
-            filteredUpgrades = newFilteredUpgrades;
+            filteredUpgrades = new Array<AbilityUpgrade>(
+                filteredUpgrades.Where(upg => upg.Id != chosenUpgrade.Id).ToArray()
+            );
         }
 
         return chosenUpgrades;
@@ -89,6 +101,13 @@ public partial class UpgradeManager : Node
     // Método chamado quando o jogador sobe de nível
     private void OnLevelUp(int currentLevel)
     {
+        // Condição adicionada apenas para dar continuidade no jogo quando os upgrades acabarem
+        // É preciso criar um Card especifico para o jogador quando os upgrades acabarem
+        if (upgradePool.Count == 0)
+        {
+            return;
+        }
+
         var upgradeScreenInstance = (UpgradeScreen)upgradeScreenScene.Instantiate(); // Instancia a tela de upgrades
         AddChild(upgradeScreenInstance); // Adiciona a tela de upgrades como filho
         Array<AbilityUpgrade> chosenUpgrades = PickUpgrades();
