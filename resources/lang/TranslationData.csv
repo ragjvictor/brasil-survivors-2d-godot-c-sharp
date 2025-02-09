@@ -7,3 +7,5 @@ DEFEAT_NAME,Fracassou,Defeat,Derrota
 DEFEAT_DESC,Você não conseguiu fugir das demandas. Fará hora extra na sexta-feira...,You failed to escape the demands. You'll be doing overtime on Friday...,No lograste escapar de las demandas. Harás horas extra el viernes...
 BTN_RESTART,Jogar novamente,Play Again,Jugar de nuevo
 BTN_QUIT,Sair,Quit,Salir
+UP_AXE_ABILITY_NAME,Machado Giratório,Spinning Ax,Hacha giratoria
+UP_AXE_ABILITY_DESC,Envia periodicamente um machado giratório.,Periodically sends out a spinning axe.,Periódicamente envía un hacha giratoria.

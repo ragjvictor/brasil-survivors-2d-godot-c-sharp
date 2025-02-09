@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://d16r2orh4ut0q"]
+
+[ext_resource type="PackedScene" uid="uid://brxfgs8qp145f" path="res://scenes/game_object/util/axe_ability_controller.tscn" id="1_4ntif"]
+[ext_resource type="Script" path="res://scripts/util/Ability.cs" id="2_75ui3"]
+
+[resource]
+script = ExtResource("2_75ui3")
+abilityControllerScene = ExtResource("1_4ntif")
+id = "axe_ability"
+Type = 0

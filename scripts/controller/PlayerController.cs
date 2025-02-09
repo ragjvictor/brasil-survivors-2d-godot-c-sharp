@@ -13,6 +13,8 @@ public partial class PlayerController : CharacterBody2D
     public HealthComponent healthComponent;    // Referência ao componente de vida (HP)
     private Timer damageIntervalTimer;  // Referência ao timer do intervalo de recebimento de dano do Player
     private ProgressBar healthBar;  // Referência a barra de HP do personagem
+    private Node abilities; // Referência ao nó das habilidades do jogador
+    private GameEvents gameEvents; 
 
     public override void _Ready()
     {
@@ -25,6 +27,11 @@ public partial class PlayerController : CharacterBody2D
         healthComponent = GetNode<HealthComponent>("HealthComponent");
         collisionArea2D = GetNode<Area2D>("CollisionArea2D");
         damageIntervalTimer = GetNode<Timer>("DamageIntervalTimer");
+        abilities = GetNode<Node>("Abilities");
+
+        gameEvents = GetNode<GameEvents>("/root/GameEvents");
+        gameEvents.AbilityUpgradeAdded += OnAbilityUpgradeAdded;
+
 
         collisionArea2D.BodyEntered += OnBodyEntered; // Conecta o evento de entrada de colisão com o método OnBodyEntered
         collisionArea2D.BodyExited += OnBodyExited; // Conecta o evento de saída de colisão com o método OnBodyExited         
@@ -116,5 +123,20 @@ public partial class PlayerController : CharacterBody2D
     private void OnHealthChanged()
     {
         UpdateHealthDisplay();
+    }
+
+    private void OnAbilityUpgradeAdded(
+        AbilityUpgrade abilityUpgrade,
+        Godot.Collections.Dictionary<string, Godot.Collections.Dictionary<string, Variant>> currentUpgrades)
+    {
+        // Se for um upgrade sai do método
+        if (!(abilityUpgrade is Ability))
+        {
+            return;
+        }
+
+        // Converte o upgrade para uma Ability e instancia ela para criar a nova habilidade.
+        Ability ability = abilityUpgrade as Ability;
+        abilities.AddChild(ability.abilityControllerScene.Instantiate());
     }
 }

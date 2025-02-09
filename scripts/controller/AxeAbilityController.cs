@@ -11,9 +11,10 @@ public partial class AxeAbilityController : Node
 
     private Timer timer; // Temporizador para controlar a habilidade
 
+    private GameEvents gameEvents;
+
     public override void _Ready()
     {
-        // Inicializa o temporizador e conecta o sinal de timeout
         timer = GetNode<Timer>("Timer");
         timer.Timeout += OnTimerTimeout;
     }

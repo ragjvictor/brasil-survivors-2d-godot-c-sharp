@@ -4,12 +4,12 @@ using System;
 // Classe que representa um upgrade de habilidade
 [GlobalClass]
 public partial class AbilityUpgrade : Resource
-{
+{    
     [Export]
     private String id; // Identificador único da habilidade
 
     private string GetTextAbility(string field)
-    {
+    {       
         return $"UP_{id.ToUpper()}_{field.ToUpper()}";
     }
 
